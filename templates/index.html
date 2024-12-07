@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decatur MX - Real Time Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='images/decatur-logo.png') }}" alt="Decatur Logo" class="header-logo">
+            <h1>Decatur MX – Real Time Objection Detection – Poka Yoke</h1>
+        </div>
+        <div class="system-status">System Active</div>
+    </header>
+
+    <div class="main-content">
+        <div class="left-panel">
+            <div class="customer-info">
+                <div class="logo-box">
+                    <span>LOGO</span>
+                </div>
+                <div class="info-grid">
+                    <span class="info-label">CUSTOMER</span>
+                    <span>OPmobility</span>
+                    <span class="info-label">Program:</span>
+                    <span>LUCID GRAVITY</span>
+                    <span class="info-label">Part Number:</span>
+                    <span>P2R-E21400</span>
+                    <span class="info-label">Part Description:</span>
+                    <span>AIRDAM</span>
+                </div>
+            </div>
+
+            <div class="detection-panels">
+                <div class="latest-detections">
+                    <h3>Latest Detections</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Time</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(10, 0, -1) %}
+                            <tr>
+                                <td>{{ 130 - i + 1 }}</td>
+                                <td>12:{{ 21 - i + 1 }}</td>
+                                <td>{{ "NOK" if i == 9 else "OK" }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="stats-tables">
+                        <h4>Total Parts Inspected</h4>
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Week</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>130</td>
+                                    <td>12:21</td>
+                                    <td>OK</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>Pass Rate</h4>
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Week</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>99.5%</td>
+                                    <td>98.5%</td>
+                                    <td>99.7%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="detection-status">
+                    <div class="status-box status-ok">
+                        <div>PART DETECTION</div>
+                        <div>OK</div>
+                    </div>
+                    <div class="status-box status-nok">
+                        <div>CLIP DETECTION</div>
+                        <div>NOK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="webcam-feed">
+                <h3>WEBCAM</h3>
+                <img src="{{ url_for('video_feed') }}" alt="Webcam feed">
+            </div>
+            <div class="picture-box">
+                <h3>PICTURE</h3>
+                <div id="captured-image"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
